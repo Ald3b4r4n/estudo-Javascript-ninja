@@ -7,265 +7,138 @@
   </head>
   <body>
     <script>
-      // Declarar uma variável qualquer, que receba um objeto vazio.
-
-      let obj = {};
-
       /*
-                  Declarar uma variável `pessoa`, que receba suas informações pessoais.
-                  As propriedades e tipos de valores para cada propriedade desse objeto devem ser:
-                  - `nome` - String
-                  - `sobrenome` - String
-                  - `sexo` - String
-                  - `idade` - Number
-                  - `altura` - Number
-                  - `peso` - Number
-                  - `andando` - Boolean - recebe "falso" por padrão
-                  - `caminhouQuantosMetros` - Number - recebe "zero" por padrão
-                  */
-
-      let pessoa = {
-        nome: "Antônio Rafael",
-        sobrenome: "Souza Cruz de Noronha",
-        sexo: "Masculino",
-        idade: 40,
-        altura: 1.72,
-        peso: 100,
-        andando: false,
-        caminhouQuantosMetros: 0,
-      };
-
-      /*
-                  Adicione um método ao objeto `pessoa` chamado `fazerAniversario`. O método deve
-                  alterar o valor da propriedade `idade` dessa pessoa, somando `1` a cada vez que
-                  for chamado.
-                  */
-      pessoa.fazerAniversario = function () {
-        this.idade++;
-        return `Feliz aniversário! Agora tenho ${this.idade} anos.`;
-      };
-
-      /*
-      Adicione um método ao objeto `pessoa` chamado `andar`, que terá as seguintes
-      características:
-      - Esse método deve receber por parâmetro um valor que representará a quantidade
-      de metros caminhados;
-      - Ele deve alterar o valor da propriedade `caminhouQuantosMetros`, somando ao
-      valor dessa propriedade a quantidade passada por parâmetro;
-      - Ele deverá modificar o valor da propriedade `andando` para o valor
-      booleano que representa "verdadeiro";
+      Vamos falar um pouco sobre "Futebol". Escolha um campeonato estadual qualquer
+      para começar o desafio.
+      Declare uma variável chamada `championship` que receberá o nome do campeonato,
+      e imprima o nome desse campeonato no console.
       */
-      pessoa.andar = function (k) {
-        this.caminhouQuantosMetros += k;
-        this.andando = true;
-        return `${this.nome} andou ${k} metros. Total percorrido: ${this.caminhouQuantosMetros} metros.`;
-      };
+      // ?
+
+      let championship = "campeonato Brasileiro";
+
+      console.log(championship);
 
       /*
-      Adicione um método ao objeto `pessoa` chamado `parar`, que irá modificar o valor
-      da propriedade `andando` para o valor booleano que representa "falso".
+      Declare uma variável chamada `teams`, que receberá um array com 5 elementos.
+      Os elementos serão nomes de times do campeonato escolhido, e os nomes devem
+      estar na ordem em que eles aparecem na tabela no momento da solução desse
+      desafio.
       */
-      pessoa.parar = function () {
-        this.andando = false;
-        return "Parou de andar";
-      };
+      // ?
+
+      let teams = ["Flamingo", "Coroinhas", "Vascular", "Fluente", "Santidade"];
+
+      console.log("Times que estão participando do campeonato:", teams);
 
       /*
-      Crie um método chamado `nomeCompleto`, que retorne a frase:
-      - "Olá! Meu nome é [NOME] [SOBRENOME]!"
+      Crie uma função chamada `showTeamPosition` com as seguintes características:
+          - A função deve receber um número por parâmetro;
+          - A função deve retornar a frase:
+          "O time que está em [POSIÇÃO]º lugar é o [NOME DO TIME].";
+          - Onde [POSIÇÃO] é o valor passado por parâmetro e [NOME DO TIME] é o time
+          que está nessa posição no array criado acima com os nomes dos times.
+          --------------
+          Dica: lembre-se que arrays começam no índice zero, então a posição passada
+          deve ser sempre um número a mais que o índice do array ;)
+          --------------
+          - A função só deve retornar a frase acima somente se o time estiver entre
+          os 5 primeiros.
+          - Se não houver time para a posição passada, deve retornar a mensagem:
+          "Não temos a informação do time que está nessa posição."
       */
+      // ?
 
-      pessoa.nomeCompleto = function () {
-        return "Olá! Meu nome é " + this.nome + this.sobrenome + "!";
-      };
+      function showTeamPosition(nu) {
+        return nu >= 0 && nu <= 5
+          ? `O time que está em ${nu}º lugar é o ${teams[nu - 1]}.`
+          : "Não temos a informação do time que está nessa posição.";
+      }
 
       /*
-      Crie um método chamado `mostrarIdade`, que retorne a frase:
-      - "Olá, eu tenho [IDADE] anos!"
+      Escolha 4 times do campeonato selecionado e mostre a posição dele, usando a
+      função acima. Entre esses 4, adicione 1 que não esteja entre os 5 primeiros.
       */
+      // ?
 
-      pessoa.mostrarIdade = function () {
-        return "Olá, eu tenho " + this.idade + " anos !";
-      };
+      console.log(showTeamPosition(3));
+      console.log(showTeamPosition(4));
+      console.log(showTeamPosition(1));
+      console.log(showTeamPosition(2));
+      console.log(showTeamPosition(6));
 
       /*
-      Crie um método chamado `mostrarPeso`, que retorne a frase:
-      - "Eu peso [PESO]Kg."
+      Mostre os números de 20 a 30 no console (inclusive o 30), usando a estrutura de
+      repetição "while".
       */
-      pessoa.mostrarPeso = function () {
-        return "Eu peso " + this.peso + " !";
-      };
+      // ?
+
+      let i = 30;
+
+      while (i >= 0) {
+        console.log(i);
+        i--;
+      }
 
       /*
-      Crie um método chamado `mostrarAltura` que retorne a frase:
-      - "Minha altura é [ALTURA]m."
+      Crie uma função chamada `convertToHex`, com as seguintes características:
+          - A função recebe uma cor por parâmetro, do tipo string. Exemplo: "red";
+          - Escolha 5 cores que serão convertidas do nome da cor para o seu
+          equivalente hexadecimal (pode ser qualquer tom);
+          - Usando a estrutura switch, verifique se a cor passada por parâmetro é
+          algum hexa escolhido. Se for, retorne a frase:
+          "O hexadecimal para a cor [COR] é [HEXADECIMAL].";
+          - Se a cor passada por parâmetro não estiver entre as selecionadas, mostre
+          a frase:
+          "Não temos o equivalente hexadecimal para [COR]."
       */
-      pessoa.mostrarAltura = function () {
-        return "Minha altura é " + this.altura + " m";
-      };
+      // ?
 
-      /*
-      Agora vamos brincar um pouco com o objeto criado:
-      Qual o nome completo da pessoa? (Use a instrução para responder e comentários
-      inline ao lado da instrução para mostrar qual foi a resposta retornada)
-      */
-
-      console.log(pessoa.nome + pessoa.sobrenome); //Antônio RafaelSouza Cruz de Noronha
-
-      /*
-      Qual a idade da pessoa? (Use a instrução para responder e comentários
-      inline ao lado da instrução para mostrar qual foi a resposta retornada)
-      */
-      console.log(pessoa.idade + " anos"); //40
-
-      /*
-      Qual o peso da pessoa? (Use a instrução para responder e comentários
-      inline ao lado da instrução para mostrar qual foi a resposta retornada)
-      */
-      console.log(pessoa.peso + " kilos"); //100
-
-      /*
-      Qual a altura da pessoa? (Use a instrução para responder e comentários
-      inline ao lado da instrução para mostrar qual foi a resposta retornada)
-      */
-      console.log(pessoa.altura + " m"); //1.70 m
-
-      /*
-      Faça a `pessoa` fazer 3 aniversários.
-      */
-
-      console.log(pessoa.fazerAniversario());
-      console.log(pessoa.fazerAniversario());
-      console.log(pessoa.fazerAniversario());
-
-      /*
-      Quantos anos a `pessoa` tem agora? (Use a instrução para responder e
-      comentários inline ao lado da instrução para mostrar qual foi a resposta
-      retornada)
-      */
-
-      //43 anos
-
-      /*
-      Agora, faça a `pessoa` caminhar alguns metros, invocando o método `andar` 3x,
-      com metragens diferentes passadas por parâmetro.
-      */
-      console.log(pessoa.andar(5));
-      console.log(pessoa.andar(10));
-      console.log(pessoa.andar(25));
-
-      /*
-      A pessoa ainda está andando? (Use a instrução para responder e comentários
-      inline ao lado da instrução para mostrar qual foi a resposta retornada)
-      */
-      console.log(pessoa.andando); //true
-      /*
-      Se a pessoa ainda está andando, faça-a parar.
-      */
-      console.log(pessoa.parar()); //Parou de andar
-
-      /*
-      E agora: a pessoa ainda está andando? (Use uma instrução para responder e
-      comentários inline ao lado da instrução para mostrar a resposta retornada)
-      */
-
-      console.log(pessoa.andando); //false
-
-      /*
-      Quantos metros a pessoa andou? (Use uma instrução para responder e comentários
-      inline ao lado da instrução para mostrar a resposta retornada)
-      */
-      console.log(pessoa.caminhouQuantosMetros + " Metros"); //40 Metros
-
-      /*
-      Agora vamos deixar a brincadeira um pouco mais divertida! :D
-      Crie um método para o objeto `pessoa` chamado `apresentacao`. Esse método deve
-      retornar a string:
-      - "Olá, eu sou o [NOME COMPLETO], tenho [IDADE] anos, [ALTURA], meu peso é [PESO] e, só hoje, eu já caminhei [CAMINHOU QUANTOS METROS] metros!"
-
-      Só que, antes de retornar a string, você vai fazer algumas validações:
-      - Se o `sexo` de `pessoa` for "Feminino", a frase acima, no início da
-      apresentação, onde diz "eu sou o", deve mostrar "a" no lugar do "o";
-      - Se a idade for `1`, a frase acima, na parte que fala da idade, vai mostrar a
-      palavra "ano" ao invés de "anos", pois é singular;
-      - Se a quantidade de metros caminhados for igual a `1`, então a palavra que
-      deve conter no retorno da frase acima é "metro" no lugar de "metros".
-      - Para cada validação, você irá declarar uma variável localmente (dentro do
-      método), que será concatenada com a frase de retorno, mostrando a resposta
-      correta, de acordo com os dados inseridos no objeto.
-      */
-
-      pessoa.apresentacao = function () {
-        if (this.sexo === "Feminino") {
-          return (
-            "Olá, eu sou a " +
-            this.nome +
-            ", tenho " +
-            this.idade +
-            " anos, " +
-            this.altura +
-            ", meu peso é " +
-            this.peso +
-            " , e, só hoje, eu já caminhei " +
-            this.caminhouQuantosMetros +
-            " metros!"
-          );
-        } else if (this.idade === 1) {
-          return (
-            "Olá, eu sou o " +
-            this.nome +
-            ", tenho " +
-            this.idade +
-            " ano, " +
-            this.altura +
-            ", meu peso é " +
-            this.peso +
-            " , e, só hoje, eu já caminhei " +
-            this.caminhouQuantosMetros +
-            " metros!"
-          );
-        } else if (this.caminhouQuantosMetros === 1) {
-          return (
-            "Olá, eu sou o " +
-            this.nome +
-            ", tenho " +
-            this.idade +
-            " anos, " +
-            this.altura +
-            ", meu peso é " +
-            this.peso +
-            " , e, só hoje, eu já caminhei " +
-            this.caminhouQuantosMetros +
-            " metro!"
-          );
+      function convertToHex(cor) {
+        cor = cor;
+        let hex;
+        switch (cor) {
+          case "vermelho":
+            hex = "#FF0000";
+            console.log(`O hexadecimal para a cor ${cor} é ${hex}.`);
+            break;
+          case "azul":
+            hex = "#0000FF";
+            console.log(`O hexadecimal para a cor ${cor} é ${hex}.`);
+            break;
+          case "Amarelo":
+            hex = "#FFFF00";
+            console.log(`O hexadecimal para a cor ${cor} é ${hex}.`);
+            break;
+          case "Cinza":
+            hex = "#808080";
+            console.log(`O hexadecimal para a cor ${cor} é ${hex}.`);
+            break;
+          case "Branco":
+            hex = "#FFFFFF";
+            console.log(`O hexadecimal para a cor ${cor} é ${hex}.`);
+            break;
+          default:
+            console.log(
+              `Não temos o equivalente hexadecimal para a cor ${cor} !`
+            );
+            break;
         }
+      }
 
-        return (
-          "Olá, eu sou o " +
-          this.nome +
-          ", tenho " +
-          this.idade +
-          " anos, " +
-          this.altura +
-          ", meu peso é " +
-          this.peso +
-          " , e, só hoje, eu já caminhei " +
-          this.caminhouQuantosMetros +
-          " metros!"
-        );
-      };
+      /*
+      Tente mostrar o hexadecimal de 8 cores diferentes usando a função criada acima.
+      */
+      // ?
 
-      console.log(pessoa.apresentacao());
-
-      pessoa.nome = "Ana Patrícia";
-      pessoa.sexo = "Feminino";
-      pessoa.peso = 40;
-      pessoa.altura = 1.57;
-      pessoa.idade = 50;
-      pessoa.sobrenome = "Cavalcante";
-      pessoa.andar(10.0);
-
-      console.log(pessoa.apresentacao());
+      console.log(convertToHex("vermelho"));
+      console.log(convertToHex("azul"));
+      console.log(convertToHex("Cinza"));
+      console.log(convertToHex("Branco"));
+      console.log(convertToHex("Amarelo"));
+      console.log(convertToHex("preto"));
+      console.log(convertToHex("Amarijo"));
+      console.log(convertToHex("Chinforinfola"));
     </script>
   </body>
 </html>
