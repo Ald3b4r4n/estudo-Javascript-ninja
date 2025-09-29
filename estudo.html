@@ -8,137 +8,96 @@
   <body>
     <script>
       /*
-      Vamos falar um pouco sobre "Futebol". Escolha um campeonato estadual qualquer
-      para começar o desafio.
-      Declare uma variável chamada `championship` que receberá o nome do campeonato,
-      e imprima o nome desse campeonato no console.
-      */
+Crie um array com 5 items (tipos variados).
+*/
       // ?
-
-      let championship = "campeonato Brasileiro";
-
-      console.log(championship);
+      let array = [58, "kalunga", { cor: "azul" }, null, true];
+      /*
+Crie uma função chamada `addItem`, que irá adicionar itens no array criado.
+A função deverá retornar o array atualizado.
+*/
+      // ?
+      function addItem(item) {
+        array.push(item);
+        return array;
+      }
+      /*
+Adicione um novo array ao array criado no início do desafio, com ao menos 3
+itens de tipos diferentes, mostrando o resultado no console.
+*/
+      // ?
+      let newArray = [42, "teste", { tipo: "objeto" }];
+      array.push(newArray);
+      console.log(array);
 
       /*
-      Declare uma variável chamada `teams`, que receberá um array com 5 elementos.
-      Os elementos serão nomes de times do campeonato escolhido, e os nomes devem
-      estar na ordem em que eles aparecem na tabela no momento da solução desse
-      desafio.
-      */
+Mostre no console o segundo elemento desse último array, criado acima, com a
+frase:
+"O segundo elemento do segundo array é [ELEMENTO]."
+*/
       // ?
-
-      let teams = ["Flamingo", "Coroinhas", "Vascular", "Fluente", "Santidade"];
-
-      console.log("Times que estão participando do campeonato:", teams);
+      console.log("O segundo elemento do segundo array é " + newArray[1] + ".");
 
       /*
-      Crie uma função chamada `showTeamPosition` com as seguintes características:
-          - A função deve receber um número por parâmetro;
-          - A função deve retornar a frase:
-          "O time que está em [POSIÇÃO]º lugar é o [NOME DO TIME].";
-          - Onde [POSIÇÃO] é o valor passado por parâmetro e [NOME DO TIME] é o time
-          que está nessa posição no array criado acima com os nomes dos times.
-          --------------
-          Dica: lembre-se que arrays começam no índice zero, então a posição passada
-          deve ser sempre um número a mais que o índice do array ;)
-          --------------
-          - A função só deve retornar a frase acima somente se o time estiver entre
-          os 5 primeiros.
-          - Se não houver time para a posição passada, deve retornar a mensagem:
-          "Não temos a informação do time que está nessa posição."
-      */
+Mostre no console quantos itens tem o primeiro array criado, com a frase:
+"O primeiro array tem [QUANTIDADE DE ITENS] itens."
+*/
       // ?
+      console.log("O primeiro array tem " + array.length + " itens.");
+      /*
+Agora mostre no console quantos itens tem o segundo array criado, com a frase:
+"O segundo array tem [QUANTIDADE DE ITENS] itens."
+*/
+      // ?
+      console.log("O segundo array tem " + newArray.length + " itens.");
 
-      function showTeamPosition(nu) {
-        return nu >= 0 && nu <= 5
-          ? `O time que está em ${nu}º lugar é o ${teams[nu - 1]}.`
-          : "Não temos a informação do time que está nessa posição.";
+      /*
+Utilizando a estrutura de repetição `while`, mostre no console todos os números
+pares entre 10 e 20, inclusive esses 2.
+*/
+
+      let i = 10;
+      while (i <= 20 && i >= 10) {
+        if (i % 2 === 0) {
+          console.log(i);
+        }
+        i++;
       }
 
-      /*
-      Escolha 4 times do campeonato selecionado e mostre a posição dele, usando a
-      função acima. Entre esses 4, adicione 1 que não esteja entre os 5 primeiros.
-      */
       // ?
 
-      console.log(showTeamPosition(3));
-      console.log(showTeamPosition(4));
-      console.log(showTeamPosition(1));
-      console.log(showTeamPosition(2));
-      console.log(showTeamPosition(6));
-
       /*
-      Mostre os números de 20 a 30 no console (inclusive o 30), usando a estrutura de
-      repetição "while".
-      */
-      // ?
+Na mesma ideia do exercício acima: mostre agora os números ímpares.
+*/
+      let y = 10;
 
-      let i = 30;
-
-      while (i >= 0) {
-        console.log(i);
-        i--;
+      while (y <= 20) {
+        if (y % 2 !== 0) {
+          console.log(y);
+        }
+        y++;
       }
-
-      /*
-      Crie uma função chamada `convertToHex`, com as seguintes características:
-          - A função recebe uma cor por parâmetro, do tipo string. Exemplo: "red";
-          - Escolha 5 cores que serão convertidas do nome da cor para o seu
-          equivalente hexadecimal (pode ser qualquer tom);
-          - Usando a estrutura switch, verifique se a cor passada por parâmetro é
-          algum hexa escolhido. Se for, retorne a frase:
-          "O hexadecimal para a cor [COR] é [HEXADECIMAL].";
-          - Se a cor passada por parâmetro não estiver entre as selecionadas, mostre
-          a frase:
-          "Não temos o equivalente hexadecimal para [COR]."
-      */
       // ?
 
-      function convertToHex(cor) {
-        cor = cor;
-        let hex;
-        switch (cor) {
-          case "vermelho":
-            hex = "#FF0000";
-            console.log(`O hexadecimal para a cor ${cor} é ${hex}.`);
-            break;
-          case "azul":
-            hex = "#0000FF";
-            console.log(`O hexadecimal para a cor ${cor} é ${hex}.`);
-            break;
-          case "Amarelo":
-            hex = "#FFFF00";
-            console.log(`O hexadecimal para a cor ${cor} é ${hex}.`);
-            break;
-          case "Cinza":
-            hex = "#808080";
-            console.log(`O hexadecimal para a cor ${cor} é ${hex}.`);
-            break;
-          case "Branco":
-            hex = "#FFFFFF";
-            console.log(`O hexadecimal para a cor ${cor} é ${hex}.`);
-            break;
-          default:
-            console.log(
-              `Não temos o equivalente hexadecimal para a cor ${cor} !`
-            );
-            break;
+      /*
+Repita os mesmos exercícios feitos acima, mas agora usando o loop "for".
+Só vamos mudar o range:
+- No primeiro "for", mostre os números pares entre 100 e 120, inclusive eles;
+- No segundo "for", mostre os números ímpares entre 111 e 125, inclusive eles.
+*/
+
+      // ?
+      for (let a = 100; a <= 120; a++) {
+        if (a % 2 === 0) {
+          console.log(a);
         }
       }
 
-      /*
-      Tente mostrar o hexadecimal de 8 cores diferentes usando a função criada acima.
-      */
-      // ?
-
-      console.log(convertToHex("vermelho"));
-      console.log(convertToHex("azul"));
-      console.log(convertToHex("Cinza"));
-      console.log(convertToHex("Branco"));
-      console.log(convertToHex("Amarelo"));
-      console.log(convertToHex("preto"));
-      console.log(convertToHex("Amarijo"));
-      console.log(convertToHex("Chinforinfola"));
+      for (let b = 111; b <= 125; b++) {
+        if (b % 2 !== 0) {
+          console.log(b);
+        }
+      }
     </script>
   </body>
 </html>
