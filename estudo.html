@@ -9,226 +9,174 @@
     <script>
       (function () {
         /*
-Envolva todo o código desse desafio em uma IIFE.
-*/
+      Envolva todo o código desse desafio em uma IIFE.
+      */
 
         /*
-Crie um array e mostre no console a representação em String desse array,
-usando o método visto na aula 13.
-*/
+      Crie um array chamado numberObjects. Esse array deve ter 10 elementos. Cada
+      elemento será um objeto no formato:
+      { number: [NUMBER] }
+      Os números devem ser de 1 a 10.
+      Mostre esse array no console.
+      */
 
-        let newAr = [1, 2, 3, "a", "b", "c", 4, 5, "e", "f"];
-        console.log("O array em formato de string é:");
-
-        console.log(newAr.toString(newAr));
-
+        let numberObjects = [
+          { number: 1 },
+          { number: 2 },
+          { number: 3 },
+          { number: 4 },
+          { number: 5 },
+          { number: 6 },
+          { number: 7 },
+          { number: 8 },
+          { number: 9 },
+          { number: 10 },
+        ];
+        console.log("Number Objects Array:");
+        // ?
+        console.log(numberObjects);
         /*
-Crie 2 arrays `sul` e `sudeste`, que serão as regiões do Brasil.
-Cada array deve conter os estados dessa região.
-*/
+      Crie um array chamado `justNumbers`, que terá como elementos somente os
+      números do array criado acima. Mostre esse novo array no console.
+      */
+
+        let justNumbers = numberObjects.map((obj) => obj.number);
+
+        console.log("\nJust Numbers:");
+        // ?
+        console.log(justNumbers);
+        /*
+      Crie um novo array chamado `justMod2Or3`, que receberá do array criado acima
+      somente os números que forem divisíveis por 2 ou 3. Mostre esse novo array
+      no console.
+      */
+
+        let justMod2Or3 = justNumbers.filter(
+          (num) => num % 2 === 0 || num % 3 === 0
+        );
+        console.log("\nJust module of division by 2 or 3:");
+        // ?
+        console.log(justMod2Or3);
+        /*
+      Declare uma variável chamada operation que receba, do array criado acima,
+      um valor reduzido pela seguinte operação:
+      - Somar 1 ao último valor retornado;
+      - Multiplicar o resultado pelo valor atual.
+      O cálculo deve começar com zero.
+      Mostre o resultado no console.
+      */
+        let operation = justMod2Or3.reduce((x, y) => {
+          return (x + 1) * y;
+        }, 0);
+
+        console.log("\nOperation:");
+        // ?
+        console.log(operation);
+        /*
+      Faça o mesmo cálculo passado acima, mas começando do último item para o
+      primeiro. O nome da variável deve ser operation2. Mostre o resultado no
+      console.
+      */
+        let operation2 = justMod2Or3.reduceRight((x, y) => {
+          return (x + 1) * y;
+        }, 0);
+        console.log("\nOperation 2:");
+        // ?
+        console.log(operation2);
+        /*
+      Crie um array chamado `name`. Cada elemento desse array deve ser uma sílaba
+      do seu nome. Vamos reduzir esse array, juntando todas as sílabas, mas usando
+      a "língua do P".
+      PS.: Lembra da língua do "P"? Não? A língua do "P" é uma brincadeira
+      infantil, onde você coloca a letra "P" antes de cada sílaba de uma palavra
+      falada, como se você estivesse falando em código xD
+      */
+
+        let name = ["Ra", "fa", "el"];
+
+        let reducao = name.reduce((a, b) => {
+          return a + "P" + b;
+        }, "");
+
+        console.log('\nSeu nome na língua do "P":');
+        // ?
+        console.log(reducao);
+        /*
+      Crie uma variável chamada `inversedName`, que reduzirá o array em uma string
+      e atribuirá o seu nome invertido (usando o array criado acima).
+      */
+
+        let inversedName = name.reduce((a, b) => {
+          return b + a;
+        }, "");
+        console.log("\nInversed Name:");
+        // ?
+        console.log(inversedName);
+        /*
+      Mostre no console o array `numberObjects`.
+      */
+        console.log("\nNumber objects");
         // ?
 
-        let sul = ["Rio Grande do sul", "santa Catarina", "Paraná"];
-        let sudeste = ["Rio de Janeiro", "São Paulo", "Espirito Santo"];
         /*
-Crie uma variável chamada `brasil`, que irá receber as duas regiões
-concatenadas. Mostre o `brasil` no console.
-*/
-        let brasil = sul.concat(sudeste);
-        console.log("\nAlguns Estados do Brasil:");
+      Verifique se existem em algum índice de numberObjects um objeto ìgual a
+      { number: 2 }. Se houver, mostre no console:
+      - "Existe um objeto { number: 2 } em numberObjects!"
+      Senão, mostre a frase:
+      - "Não existe um objeto { number: 2 } em numberObjects :("
+      Consegue prever o resultado? Deixe uma mensagem no console tentando explicar
+      o que acontece ;)
+      */
 
-        console.log(brasil);
+        let indice = numberObjects.indexOf({ number: 2 });
 
-        /*
-Adicione 3 novos estados da região Norte no início do array e mostre no console.
-*/
-        console.log("\nMais estados adicionados:");
+        console.log("\nExiste um { number: 2 } em numberObjects?");
         // ?
-        brasil.push(
-          "Ceará",
-          "Piauí",
-          "Pernambuco",
-          "Maranhão",
-          "Sergipe",
-          "alagoas"
+        if (indice !== -1) {
+          console.log("Existe um objeto { number: 2 } em numberObjects!");
+        } else {
+          console.log("Não existe um objeto { number: 2 } em numberObjects :(");
+        }
+        console.log(indice);
+
+        console.log("\n--- EXPLICAÇÃO ---");
+        console.log("Mesmo existindo um objeto com { number: 2 } no array,");
+        console.log("o indexOf() retorna -1 porque:");
+        console.log("1. indexOf() usa comparação estrita (===)");
+        console.log("2. { number: 2 } === { number: 2 } retorna FALSE");
+        console.log(
+          "3. São objetos DIFERENTES na memória, mesmo com mesmas propriedades"
+        );
+        console.log(
+          "4. Para objetos, precisamos usar findIndex() em vez de indexOf()"
         );
 
-        console.log(brasil);
         /*
-Remova o primeiro estado do array `brasil` e mostre-o no console.
-*/
-        console.log("\nEstado removido:");
+      Fazendo o mesmo do exercício acima, mas começando a buscar do último índice,
+      será que obtemos um resultado diferente? Faça a busca a partir do índice 2.
+      */
+        console.log(
+          "\nE buscando a partir do último índice, o { number: 2 } existe?"
+        );
         // ?
-
-        let removedState = brasil.pop();
-        console.log(removedState);
-
-        /*
-Crie um novo array chamado `newSul`, que receba somente os estados do sul,
-pegando do array `brasil`. Não remova esses itens de `brasil`.
-*/
-        // ?
-        let newSul = brasil.slice(0, 3);
-        /*
-Mostre no console os estados que estão em `newSul`.
-*/
-        console.log("\nEstados do Sul do Brasil:");
-        // ?
-        console.log(newSul);
-        /*
-Mostre no console todos os estados que estão em `brasil`.
-*/
-        console.log("\nAlguns Estados do Brasil:");
-        // ?
-        console.log(brasil);
-        /*
-Crie um novo array chamado `nordeste`, que tenha os estados do nordeste.
-*/
-        // ?
-        let newNordeste = brasil.slice(6, 10);
-        /*
-Mostre no console os estados do nordeste.
-*/
-        console.log("\nEstados do Nordeste:");
-        // ?
-        console.log(newNordeste);
-        /*
-Remova de `brasil` os estados do `sudeste`, colocando-os em uma variável
-chamada `newSudeste`.
-*/
-        // ?
-        let newSudeste = brasil.splice(3, 3);
-        /*
-Adicione os estados do `nordeste` ao array `brasil`. Esses estados devem
-ficar no mesmo nível que os estados já existentes, não em um array separado.
-*/
-        // ?
+        let indiceFromIndex2 = numberObjects.indexOf({ number: 2 }, 2);
+        console.log("Busca a partir do índice 2:", indiceFromIndex2);
 
         /*
-Mostre no console os estados em `newSudeste`.
-*/
-        console.log("\nEstados em newSudeste:");
-        // ?
-        console.log(newSudeste);
-        /*
-Mostre no console os estados do `brasil`.
-*/
-        console.log("\nAlguns estados do Brasil:");
-        // ?
-        console.log(brasil);
-        /*
-usando forEach, percorra o array `brasil` e gere um novo array chamado
-`newBrasil`. Esse array deve ter cada item como um objeto, com as
-propriedades:
-- `id`: que será o índice do array `brasil`,
-- `estado`: que será o estado do array `brasil`.
-*/
-        // ?
-        let newBrasil = [];
-        brasil.forEach((estado, id) => {
-          newBrasil.push({ id, estado });
-        });
-        /*
-Mostre o array `newBrasil` no console
-*/
-        console.log("\nnewBrasil:");
+      Verifique se `justMod2Or3` é um array. Se for, mostre-o no console, no
+      formato de String.
+      */
+        let isArr = Array.isArray(justMod2Or3);
+        console.log(
+          "\njustMod2Or3 é um array? Se for, a representação dele em String é:"
+        );
 
-        console.log(newBrasil);
-        // ?
-
-        /*
-Percorra o array `brasil` e verifique se os estados tem mais de 7 letras cada,
-atribuindo o resultado à uma variável. Se tiver, mostre no console a frase:
-- "Sim, todos os estados tem mais de 7 letras!"
-Senão, mostre no console:
-- "Nem todos os estados tem mais de 7 letras!"
-*/
-        console.log("\nTodos os estados de `brasil` tem mais de 7 letras?");
-        // ?
-
-        let todosTemMaisDe7Letras = true;
-
-        brasil.forEach((estado) => {
-          if (estado.length <= 7) {
-            todosTemMaisDe7Letras = false;
-          }
-        });
-
-        if (todosTemMaisDe7Letras) {
-          console.log("Sim, todos os estados tem mais de 7 letras!");
+        if (isArr) {
+          console.log(justMod2Or3.toString());
         } else {
-          console.log("Nem todos os estados tem mais de 7 letras!");
+          console.log("justMod2Or3 não é um array!");
         }
-
-        /*
-Percorra o array `brasil` e verifique se o Ceará está incluído, atribuindo o
-resultado à uma variável. Se esse estado existir no array, mostrar a frase no
-console:
-- "Ceará está incluído!"
-Senão, mostrar a frase:
-- "Ceará não foi incluído :("
-*/
-        console.log("\nCeará está incluído em `brasil`?");
         // ?
-
-        let cearaIncluso = false;
-
-        brasil.forEach((estado) => {
-          if ((estado = "Ceará")) {
-            cearaIncluso = true;
-
-            console.log("Ceará está incluído!");
-          } else {
-            console.log("Ceará não foi incluído!");
-          }
-        });
-
-        /*
-Percorra o array `newBrasil` e crie um novo array que some 1 no ID de cada
-objeto desse array, e adicione a frase abaixo na propriedade `estado`:
-- "[ESTADO] pertence ao Brasil."
-Atribua o novo array a uma variável chamada `map`.
-*/
-        // ?
-
-        let map = [];
-
-        newBrasil.forEach(function (item) {
-          map.push({
-            id: item.id + 1, // Soma 1 no ID
-            estado: `${item.estado} pertence ao Brasil.`, // Adiciona a frase
-          });
-        });
-
-        /*
-Mostre no console o array criado acima:
-*/
-        console.log("\nnewBrasil agora com mais informações:");
-        // ?
-        console.log(map);
-
-        /*
-Filtre o array criado acima, retornando somente os estados que tiverem
-ID par. Atribua o valor à uma variável chamada `filter`.
-*/
-        // ?
-        let filter = [];
-
-        // Percorrendo o array map com forEach
-        map.forEach(function (item) {
-          // Verifica se o ID é par (resto da divisão por 2 é 0)
-          if (item.id % 2 === 0) {
-            filter.push(item);
-          }
-        });
-
-        /*
-Mostre o array filtrado acima no console.
-*/
-        console.log("\nEstados com ID par:");
-        // ?
-
-        console.log(filter);
       })();
     </script>
   </body>
