@@ -8,120 +8,169 @@
   <body>
     <script>
       (function () {
-        "use strict";
+        /*
+                  1. Envolva todo o conteúdo desse desafio em uma IIFE.
+                  2. Adicione a diretiva 'use strict';
+                  3. Crie um arquivo index.html e adicione esse script à ele.
+                  */
 
         /*
-1. Envolva todo o conteúdo desse desafio em uma IIFE.
-2. Adicione a diretiva 'use strict';
-3. Crie um arquivo index.html e adicione esse script à ele.
-*/
+                  Em todos os exercícios desse desafio, nós vamos utilizar expressões
+                  regulares! Para isso, iremos usar o texto abaixo. Coloque-o em uma
+                  variável chamada `text`:
+                  "Manuel Marques de Sousa, Conde de Porto Alegre (Rio Grande, 13 de junho de 1804 – Rio de Janeiro, 18 de julho de 1875), apelidado de "O Centauro de Luvas", foi um militar, político, abolicionista e monarquista brasileiro."
+                  */
+        // ?
+        let text =
+          'Manuel Marques de Sousa, Conde de Porto Alegre (Rio Grande, 13 de junho de 1804 – Rio de Janeiro, 18 de julho de 1875), apelidado de "O Centauro de Luvas", foi um militar, político, abolicionista e monarquista brasileiro.';
 
         /*
-Declare uma variável chamada `name` que receba seu primeiro nome.
-Mostre no console todas as letras do seu nome separadas, com a frase:
-- "[LETRA] é a [POSIÇÃO]ª letra do meu nome."
-Ex: no caso do nome ser "Fernando", deve mostrar as frases:
-- "F é a 1ª letra do meu nome."
-- "e é a 2ª letra do meu nome."
-E assim por diante, até a última.
-*/
-
-        // Declarando a variável com o nome
-        let name = "Antonio";
-
-        console.log("As letras do seu nome:");
-
-        // Percorrendo cada letra do nome
-        for (let i = 0; i < name.length; i++) {
-          let posicao = i + 1; // A posição começa em 1, não em 0
-          let letra = name[i];
-
-          console.log(`- "${letra}" é a ${posicao}ª letra do meu nome.`);
-        }
+                  Vamos começar com umas brincadeiras fáceis :D
+                  Troque o nome "Manuel Marques de Sousa" pelo seu nome, e mostre o resultado
+                  no console:
+                  */
+        console.log("Adicionando seu nome no texto:");
+        // ?
+        console.log(text.replace("Manuel Marques de Sousa", "Antonio Rafael"));
+        /*
+                  Agora, substitua a palavra "brasileiro" por sua cidade natal e mostre no
+                  console.
+                  Ex: Se você for da São Paulo, substitua por "paulista".
+                  */
+        text = text.replace(
+          /Manuel Marques de Sousa|brasileiro|Rio Grande|Rio de Janeiro|13 de junho de 1804|18 de julho de 1875|Porto Alegre/g,
+          (found) => {
+            let trocas = {
+              brasileiro: "brasiliense",
+              "Manuel Marques de Sousa": "Antonio Rafael",
+              "Rio Grande": "Brasilia",
+              "Rio de Janeiro": "Formosa",
+              "13 de junho de 1804": "24/04/1985",
+              "18 de julho de 1875": "16/12/2089",
+              "Porto Alegre": "Formosa",
+            };
+            return trocas[found] || found;
+          }
+        );
+        console.log("\nTrocando naturalidade:");
         // ?
 
+        console.log(text);
         /*
-- Declare uma variável chamada `fullName`, que receba seu nome completo,
-escrito no formato de slug (caixa baixa e palavras separadas por um traço).
-Ex: o nome "Fernando Daciuk" ficaria "fernando-daciuk"
-- Faça a primeira letra de cada nome ficar em caixa alta, e troque o traço
-por um espaço.
-- Detalhe: o código que você escrever abaixo deve funcionar para qualquer
-nome, então fique à vontade para usar as artimanhas que já viu até agora no
-curso para fazer isso funcionar corretamente :)
-- Mostre no console o nome no formato slug, e o resultado final. Use um
-console.log para cada formato.
-*/
-        let fullName = "antonio-rafael";
+                  Substitua todos os números por um traço `-`. Cada caractere de número deve
+                  ser um traço. Mostre o resultado no console:
+                  */
 
-        let NewFullname = fullName.split("-").map(function (name) {
-          return name.charAt(0).toUpperCase() + name.slice(1);
+        text = text.replace(/\d/g, "-");
+
+        console.log("\nTrocando números por -:");
+        // ?
+        console.log(text);
+
+        /*
+                  Substitua todas as letras (somente letras) de "D" maiúsculo até "h"
+                  minúsculo por "0" (número zero). Mostre o resultado no console:
+                  */
+        console.log('\nTrocando de "D" a "h" por "0":');
+        // ?
+        text = text.replace(/[D-h]/g, "0");
+        console.log(text);
+
+        /*
+                  Substitua todos os "A" (maiúsculos ou minúsculos) por "4".
+                  Mostre o resultado no console:
+                  */
+        console.log('\nTrocando "A" e "a" por "4":');
+        // ?
+        text =
+          "Antonio Rafael, Conde de Formosa (Brasilia, 24/04/1985 – Formosa, 16/12/2089), apelidado de 'O Centauro de Luvas', foi um militar, político, abolicionista e monarquista brasiliense.";
+
+        text = text.replace(/A|a/g, "4");
+        console.log(text);
+
+        /*
+                  Substitua a frase "O Centauro de Luvas", deixando-a em caixa alta, usando
+                  o método `toUpperCase()`. Mostre o resultado no console:
+                  */
+        console.log('\n"O Centauro de Luvas" em caixa alta:');
+        // ?
+        text =
+          "Antonio Rafael, Conde de Formosa (Brasilia, 24/04/1985 – Formosa, 16/12/2089), apelidado de 'O Centauro de Luvas', foi um militar, político, abolicionista e monarquista brasiliense.";
+        text = text.replace(/O Centauro de Luvas/g, (match) => {
+          return match.toUpperCase();
         });
-
-        console.log("\nNome convertido à partir de um slug:");
-        // ?
-        console.log(fullName);
-        console.log(NewFullname.join(" "));
-        /*
-- Crie um array com 5 nomes. Reduza esses nomes a uma única string, separando
-cada nome por vírgula. Entre o penúltimo e o último nome, o separador deve
-ser um "e". No final, concatene com a frase: " são meus amigos.".
-O resultado final deve ficar mais ou menos assim:
-- "João, Maria, Roberto, Pedro e Marcos são meus amigos."
-- Detalhe: o código abaixo deve funcionar com um array de qualquer tamanho.
-5 nomes foi somente uma sugestão ;)
-*/
-
-        let arrCinco = ["João", "Maria", "Roberto", "Pedro", "Marcos"];
-        let arrRed = arrCinco.reduce(function (acc, name, index, array) {
-          if (index === array.length - 2) {
-            return acc + name + " e ";
-          } else if (index === array.length - 1) {
-            return acc + name + " são meus amigos.";
-          } else {
-            return acc + name + ", ";
-          }
-        }, ""); // <- Valor inicial vazio aqui
-
-        console.log("\nMeus amigos:");
-        console.log(arrRed);
-        /*
-Usando o replace(), faça a string "Roberto" virar "Roberta".
-Mostre o resultado no console.
-*/
-
-        console.log('\nEra "Roberto", agora é:');
-        // ?
-        console.log("Roberto".replace("Roberto", "Roberta"));
+        console.log(text);
 
         /*
-Mostre no console a parte "nando" da string "Fernando". Use o método que
-faz a busca do final para o início da string.
-*/
-        console.log("\nParte de uma string:");
+                  Agora iremos substituir as datas no formato "13 de junho de 1804" para
+                  "13/06/1804". A primeira coisa a fazer é criar uma função chamada
+                  `getMonthNumber`, que irá receber um parâmetro (será o nome do mês) e deverá
+                  retornar o número correspondente a esse mês.
+                  Ex: Se o usuário entrar com "março", deve retornar "03" (em string mesmo).
+                  Números com menos de dois dígitos devem ter um zero na frente.
+                  Crie então a função e mostre no console os retornos para os meses de março,
+                  setembro e dezembro.
+                  Use um console.log para cada mês, usando a frase:
+                  "O mês de [NOME DO MÊS] é representado pelo número [NÚMERO DO MÊS]."
+                  */
+        console.log("\nMeses representados por números:");
         // ?
-        console.log("Fernando".substring("Fernando".indexOf("nando")));
-        /*
-Declare uma variável chamada `myName`, que receba o seu primeiro nome,
-escrito de forma natural.
-Mostre no console esse nome, mas com as letras intercalando entre maiúsculas
-e minúsculas.
-- Detalhe: o código abaixo deve funcionar da mesma forma para qualquer nome,
-de qualquer tamanho, escrito de qualquer forma.
-Ex.: Nomes que deveriam funcionar: "Fernando", "RoBertO", "gabriEla", etc.
-*/
-        console.log("\nNome com letras intercaladas entre caixa alta e baixa:");
-        // ?
-        let myName = "antonio";
-        let newName = "";
-        for (let i = 0; i < myName.length; i++) {
-          if (i % 2 === 0) {
-            newName += myName[i].toUpperCase();
-          } else {
-            newName += myName[i].toLowerCase();
-          }
+
+        function getMonthNumber(month) {
+          const months = {
+            janeiro: "01",
+            fevereiro: "02",
+            marco: "03",
+            abril: "04",
+            maio: "05",
+            junho: "06",
+            julho: "07",
+            agosto: "08",
+            setembro: "09",
+            outubro: "10",
+            novembro: "11",
+            dezembro: "12",
+          };
+          return months[month.toLowerCase()];
         }
-        console.log(newName);
+        console.log(getMonthNumber("marco") + " é o mês de março");
+        console.log(getMonthNumber("setembro") + " é o mês de setembro");
+        console.log(getMonthNumber("dezembro") + " é o mês de dezembro");
+
+        /*
+                  Agora, declare uma variável chamada `regexDate` que irá receber a expressão
+                  regular que irá fazer o match com as datas. Crie grupos de captura para o
+                  dia, o mês e o ano. Para os meses, você pode fazer o match somente com os
+                  meses que estão no texto, não precisa adicionar todos.
+                  Com o que vimos até agora, você consegue fazer :D
+                  Mostre a regex no console.
+                  */
+        console.log("\nRegex que vai fazer o match com as datas do texto:");
+        // ?
+
+        text =
+          "Antonio Rafael, Conde de Formosa (Brasilia, 24/04/1985 – Formosa, 16/12/2089), apelidado de 'O Centauro de Luvas', foi um militar, político, abolicionista e monarquista brasiliense.";
+        let regexDate = /(\d{2})\/(\d{2})\/(\d{4})/g;
+        console.log(regexDate);
+        console.log("\nCapturando as datas:");
+        let matches = text.match(regexDate);
+        console.log("Datas encontradas:", matches);
+        /*
+                  Agora crie a função que irá fazer o replace dos dados. A função será chamada
+                  de `replaceDate`. Ela deve retornar a data no formato:
+                  "[DIA]/[MÊS]/[ANO]"
+                  Após criar a função, faça o replace das datas no texto, mostrando no
+                  console o resultado.
+                  */
+        console.log("\nReplace de datas:");
+
+        let replaceDate = (match, day, month, year) => {
+          return `${day}/${month}/${year}`;
+        };
+        text = text.replace(regexDate, replaceDate);
+        console.log(text);
+
+        // ?
       })();
     </script>
   </body>
