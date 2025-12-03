@@ -6,171 +6,355 @@
     <title>Estudo JS Ninja</title>
   </head>
   <body>
+    <h1>Cronômetro</h1>
+    <button id="inicia">Start</button>
+    <button id="para">Stop</button>
+    <button id="reseta">Reset</button>
+    <input type="text" name="" id="cronus" value="0" />
+
+    <style>
+   
+   /* Botões com efeito ninja premium - 3D, gradientes, sombras */
+      button {
+        margin: 10px;
+        padding: 12px 28px;
+        
+        /* Bordas e cantos */
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        
+        /* Tipografia */
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        
+        /* Interatividade */
+        cursor: pointer;
+        user-select: none;
+        
+        /* Transformação 3D */
+        transform: perspective(800px) translateZ(0);
+        transform-style: preserve-3d;
+        
+        /* Transição suave */
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        
+        /* Sombras 3D em camadas */
+        box-shadow: 
+          0 4px 8px rgba(0, 0, 0, 0.2),
+          0 6px 12px rgba(0, 0, 0, 0.15),
+          0 8px 16px rgba(0, 0, 0, 0.1),
+          inset 0 -2px 6px rgba(0, 0, 0, 0.3),
+          inset 0 2px 6px rgba(255, 255, 255, 0.2);
+        
+        /* Sombra de texto */
+        text-shadow: 
+          1px 1px 2px rgba(0, 0, 0, 0.4),
+          2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      
+      /* Botão Start - Verde vibrante */
+      #inicia {
+        background: linear-gradient(135deg, #11998e, #38ef7d);
+        background-size: 200% 200%;
+        animation: gradientPulse 4s ease infinite;
+      }
+      
+      /* Botão Stop - Vermelho vibrante */
+      #para {
+        background: linear-gradient(135deg, #eb3349, #f45c43);
+        background-size: 200% 200%;
+        animation: gradientPulse 4s ease infinite;
+      }
+      
+      /* Botão Reset - Azul vibrante */
+      #reseta {
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        background-size: 200% 200%;
+        animation: gradientPulse 4s ease infinite;
+      }
+      
+      @keyframes gradientPulse {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+      
+      button:hover {
+        /* Elevação 3D */
+        transform: perspective(800px) translateY(-6px) translateZ(10px) scale(1.05);
+        
+        /* Sombras intensificadas */
+        box-shadow: 
+          0 8px 16px rgba(0, 0, 0, 0.3),
+          0 12px 24px rgba(0, 0, 0, 0.2),
+          0 16px 32px rgba(0, 0, 0, 0.15),
+          inset 0 -3px 8px rgba(0, 0, 0, 0.4),
+          inset 0 3px 8px rgba(255, 255, 255, 0.3);
+        
+        /* Borda brilhante */
+        border-color: rgba(255, 255, 255, 0.5);
+        
+        /* Brilho no texto */
+        text-shadow: 
+          1px 1px 3px rgba(0, 0, 0, 0.5),
+          2px 2px 6px rgba(0, 0, 0, 0.3),
+          0 0 15px rgba(255, 255, 255, 0.4);
+      }
+      
+      button:active {
+        /* Efeito de pressionar */
+        transform: perspective(800px) translateY(2px) translateZ(0) scale(0.97);
+        
+        /* Sombras reduzidas */
+        box-shadow: 
+          0 2px 4px rgba(0, 0, 0, 0.3),
+          0 3px 6px rgba(0, 0, 0, 0.2),
+          inset 0 3px 8px rgba(0, 0, 0, 0.5),
+          inset 0 -1px 4px rgba(255, 255, 255, 0.1);
+        
+        /* Transição instantânea */
+        transition: all 0.1s ease;
+      }
+
+      /* Input com efeito ninja premium - Display de cristal */
+      input {
+        margin: 10px;
+        padding: 12px 28px;
+        
+        /* Gradiente roxo futurista */
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-size: 200% 200%;
+        
+        /* Bordas com efeito glassmorphism */
+        border: 2px solid rgba(255, 255, 255, 0.25);
+        border-radius: 10px;
+        
+        /* Tipografia */
+        color: #fff;
+        font-size: 20px;
+        font-weight: 800;
+        text-align: center;
+        letter-spacing: 2px;
+        
+        /* Cursor e interação */
+        cursor: default;
+        user-select: none;
+        
+        /* Transformação 3D */
+        transform: perspective(800px) translateZ(0);
+        transform-style: preserve-3d;
+        
+        /* Transição suave */
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        
+        /* Múltiplas camadas de sombra 3D */
+        box-shadow: 
+          0 4px 8px rgba(102, 126, 234, 0.3),
+          0 6px 12px rgba(118, 75, 162, 0.25),
+          0 8px 16px rgba(0, 0, 0, 0.2),
+          inset 0 -2px 8px rgba(0, 0, 0, 0.3),
+          inset 0 2px 8px rgba(255, 255, 255, 0.2);
+        
+        /* Sombra de texto com brilho */
+        text-shadow: 
+          0 0 10px rgba(255, 255, 255, 0.3),
+          2px 2px 4px rgba(0, 0, 0, 0.5),
+          0 0 20px rgba(102, 126, 234, 0.4);
+        
+        /* Animação de gradiente */
+        animation: gradientPulse 6s ease infinite;
+      }
+      
+      input:hover {
+        /* Elevação e escala */
+        transform: perspective(800px) translateY(-4px) translateZ(8px) scale(1.03);
+        
+        /* Sombras intensificadas com brilho colorido */
+        box-shadow: 
+          0 8px 16px rgba(102, 126, 234, 0.4),
+          0 12px 24px rgba(118, 75, 162, 0.3),
+          0 16px 32px rgba(0, 0, 0, 0.25),
+          inset 0 -3px 10px rgba(0, 0, 0, 0.4),
+          inset 0 3px 10px rgba(255, 255, 255, 0.3),
+          0 0 30px rgba(102, 126, 234, 0.5);
+        
+        /* Borda mais brilhante */
+        border-color: rgba(255, 255, 255, 0.5);
+        
+        /* Texto com mais brilho */
+        text-shadow: 
+          0 0 15px rgba(255, 255, 255, 0.5),
+          2px 2px 6px rgba(0, 0, 0, 0.6),
+          0 0 30px rgba(102, 126, 234, 0.6),
+          0 0 40px rgba(118, 75, 162, 0.4);
+      }
+      
+      input:focus {
+        /* Foco com efeito de destaque */
+        outline: none;
+        border-color: rgba(255, 255, 255, 0.6);
+        
+        box-shadow: 
+          0 8px 16px rgba(102, 126, 234, 0.5),
+          0 12px 24px rgba(118, 75, 162, 0.4),
+          0 0 0 4px rgba(102, 126, 234, 0.3),
+          inset 0 -3px 10px rgba(0, 0, 0, 0.4),
+          inset 0 3px 10px rgba(255, 255, 255, 0.3);
+      }
+
+      /* h1 com efeito ninja avançado - 3D, sombreamento, hover e active */
+      h1 {
+        /* Tamanho calculado: 3 botões + 1 input = 4 elementos com padding 10px 20px + margens 10px */
+        /* Cada elemento: (20px padding left + 20px right) + (10px margin left + 10px right) ≈ 50px base */
+        width: calc(100% - 20px); /* largura total menos margens */
+        max-width: 800px; /* largura máxima para telas grandes */
+        margin: 20px auto;
+        padding: 20px 30px;
+        
+        /* Efeito 3D e gradiente vibrante */
+        background: linear-gradient(145deg, #ff6b6b, #4ecdc4, #45b7d1, #f7b731);
+        background-size: 300% 300%;
+        
+        /* Bordas com efeito futurista */
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 15px;
+        
+        /* Texto estilizado */
+        color: #fff;
+        font-size: 32px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        text-align: center;
+        
+        /* Sombreamento múltiplo 3D */
+        box-shadow: 
+          0 8px 16px rgba(0, 0, 0, 0.3),
+          0 12px 24px rgba(0, 0, 0, 0.2),
+          0 16px 32px rgba(0, 0, 0, 0.15),
+          inset 0 -3px 10px rgba(0, 0, 0, 0.3),
+          inset 0 3px 10px rgba(255, 255, 255, 0.2);
+        
+        /* Sombreamento de texto 3D */
+        text-shadow: 
+          2px 2px 4px rgba(0, 0, 0, 0.5),
+          4px 4px 8px rgba(0, 0, 0, 0.3),
+          -1px -1px 2px rgba(255, 255, 255, 0.3),
+          0 0 20px rgba(255, 107, 107, 0.5);
+        
+        /* Transformação 3D */
+        transform: perspective(1000px) rotateX(2deg);
+        transform-style: preserve-3d;
+        
+        /* Transições suaves */
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        
+        /* Cursor interativo */
+        cursor: pointer;
+        user-select: none;
+        
+        /* Animação de gradiente */
+        animation: gradientShift 8s ease infinite;
+      }
+      
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      h1:hover {
+        /* Transformação 3D no hover */
+        transform: perspective(1000px) rotateX(-3deg) translateY(-8px) scale(1.03);
+        
+        /* Sombreamento intensificado */
+        box-shadow: 
+          0 12px 24px rgba(0, 0, 0, 0.4),
+          0 18px 36px rgba(0, 0, 0, 0.3),
+          0 24px 48px rgba(0, 0, 0, 0.2),
+          inset 0 -4px 12px rgba(0, 0, 0, 0.4),
+          inset 0 4px 12px rgba(255, 255, 255, 0.3),
+          0 0 40px rgba(255, 107, 107, 0.6);
+        
+        /* Brilho no texto */
+        text-shadow: 
+          2px 2px 6px rgba(0, 0, 0, 0.6),
+          4px 4px 12px rgba(0, 0, 0, 0.4),
+          -1px -1px 3px rgba(255, 255, 255, 0.4),
+          0 0 30px rgba(255, 107, 107, 0.8),
+          0 0 50px rgba(78, 205, 196, 0.5);
+        
+        /* Borda brilhante */
+        border-color: rgba(255, 255, 255, 0.6);
+        
+        /* Acelera animação do gradiente */
+        animation: gradientShift 3s ease infinite;
+      }
+      
+      h1:active {
+        /* Efeito de pressionar para dentro */
+        transform: perspective(1000px) rotateX(0deg) translateY(4px) scale(0.98);
+        
+        /* Sombra reduzida para efeito de pressionar */
+        box-shadow: 
+          0 4px 8px rgba(0, 0, 0, 0.3),
+          0 6px 12px rgba(0, 0, 0, 0.2),
+          inset 0 4px 12px rgba(0, 0, 0, 0.5),
+          inset 0 -2px 8px rgba(255, 255, 255, 0.1);
+        
+        /* Texto com sombra reduzida */
+        text-shadow: 
+          1px 1px 2px rgba(0, 0, 0, 0.7),
+          2px 2px 4px rgba(0, 0, 0, 0.5),
+          0 0 15px rgba(255, 107, 107, 0.4);
+        
+        /* Transição rápida no click */
+        transition: all 0.1s ease;
+      }
+      
+      body {
+        background-color: #f0f0f0;
+        color: #333;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+
+
+      }
+
+    </style>
     <script>
       (function () {
-        /*
-                  1. Envolva todo o conteúdo desse desafio em uma IIFE.
-                  2. Adicione a diretiva 'use strict';
-                  3. Crie um arquivo index.html e adicione esse script à ele.
-                  */
+        // Ao clicar em Start, o valor do campo deve ser incrementado de 1 em 1, acada segundo;
+        // Ao clicar em Stop, o cronômetro deve parar de contar;
+        //Ao clicar em Reset, o cronômetro deve zerar e parar de contar.
 
-        /*
-                  Em todos os exercícios desse desafio, nós vamos utilizar expressões
-                  regulares! Para isso, iremos usar o texto abaixo. Coloque-o em uma
-                  variável chamada `text`:
-                  "Manuel Marques de Sousa, Conde de Porto Alegre (Rio Grande, 13 de junho de 1804 – Rio de Janeiro, 18 de julho de 1875), apelidado de "O Centauro de Luvas", foi um militar, político, abolicionista e monarquista brasileiro."
-                  */
-        // ?
-        let text =
-          'Manuel Marques de Sousa, Conde de Porto Alegre (Rio Grande, 13 de junho de 1804 – Rio de Janeiro, 18 de julho de 1875), apelidado de "O Centauro de Luvas", foi um militar, político, abolicionista e monarquista brasileiro.';
+        const inicia = document.getElementById("inicia");
+        const para = document.getElementById("para");
+        const reseta = document.getElementById("reseta");
+        const cronus = document.getElementById("cronus");
 
-        /*
-                  Vamos começar com umas brincadeiras fáceis :D
-                  Troque o nome "Manuel Marques de Sousa" pelo seu nome, e mostre o resultado
-                  no console:
-                  */
-        console.log("Adicionando seu nome no texto:");
-        // ?
-        console.log(text.replace("Manuel Marques de Sousa", "Antonio Rafael"));
-        /*
-                  Agora, substitua a palavra "brasileiro" por sua cidade natal e mostre no
-                  console.
-                  Ex: Se você for da São Paulo, substitua por "paulista".
-                  */
-        text = text.replace(
-          /Manuel Marques de Sousa|brasileiro|Rio Grande|Rio de Janeiro|13 de junho de 1804|18 de julho de 1875|Porto Alegre/g,
-          (found) => {
-            let trocas = {
-              brasileiro: "brasiliense",
-              "Manuel Marques de Sousa": "Antonio Rafael",
-              "Rio Grande": "Brasilia",
-              "Rio de Janeiro": "Formosa",
-              "13 de junho de 1804": "24/04/1985",
-              "18 de julho de 1875": "16/12/2089",
-              "Porto Alegre": "Formosa",
-            };
-            return trocas[found] || found;
-          }
-        );
-        console.log("\nTrocando naturalidade:");
-        // ?
+        let interval;
 
-        console.log(text);
-        /*
-                  Substitua todos os números por um traço `-`. Cada caractere de número deve
-                  ser um traço. Mostre o resultado no console:
-                  */
-
-        text = text.replace(/\d/g, "-");
-
-        console.log("\nTrocando números por -:");
-        // ?
-        console.log(text);
-
-        /*
-                  Substitua todas as letras (somente letras) de "D" maiúsculo até "h"
-                  minúsculo por "0" (número zero). Mostre o resultado no console:
-                  */
-        console.log('\nTrocando de "D" a "h" por "0":');
-        // ?
-        text = text.replace(/[D-h]/g, "0");
-        console.log(text);
-
-        /*
-                  Substitua todos os "A" (maiúsculos ou minúsculos) por "4".
-                  Mostre o resultado no console:
-                  */
-        console.log('\nTrocando "A" e "a" por "4":');
-        // ?
-        text =
-          "Antonio Rafael, Conde de Formosa (Brasilia, 24/04/1985 – Formosa, 16/12/2089), apelidado de 'O Centauro de Luvas', foi um militar, político, abolicionista e monarquista brasiliense.";
-
-        text = text.replace(/A|a/g, "4");
-        console.log(text);
-
-        /*
-                  Substitua a frase "O Centauro de Luvas", deixando-a em caixa alta, usando
-                  o método `toUpperCase()`. Mostre o resultado no console:
-                  */
-        console.log('\n"O Centauro de Luvas" em caixa alta:');
-        // ?
-        text =
-          "Antonio Rafael, Conde de Formosa (Brasilia, 24/04/1985 – Formosa, 16/12/2089), apelidado de 'O Centauro de Luvas', foi um militar, político, abolicionista e monarquista brasiliense.";
-        text = text.replace(/O Centauro de Luvas/g, (match) => {
-          return match.toUpperCase();
+        inicia.addEventListener("click", () => {
+          interval = setInterval(() => {
+            cronus.value = parseInt(cronus.value) + 1;
+          }, 1000);
         });
-        console.log(text);
 
-        /*
-                  Agora iremos substituir as datas no formato "13 de junho de 1804" para
-                  "13/06/1804". A primeira coisa a fazer é criar uma função chamada
-                  `getMonthNumber`, que irá receber um parâmetro (será o nome do mês) e deverá
-                  retornar o número correspondente a esse mês.
-                  Ex: Se o usuário entrar com "março", deve retornar "03" (em string mesmo).
-                  Números com menos de dois dígitos devem ter um zero na frente.
-                  Crie então a função e mostre no console os retornos para os meses de março,
-                  setembro e dezembro.
-                  Use um console.log para cada mês, usando a frase:
-                  "O mês de [NOME DO MÊS] é representado pelo número [NÚMERO DO MÊS]."
-                  */
-        console.log("\nMeses representados por números:");
-        // ?
+        para.addEventListener("click", () => {
+          clearInterval(interval);
+        });
 
-        function getMonthNumber(month) {
-          const months = {
-            janeiro: "01",
-            fevereiro: "02",
-            marco: "03",
-            abril: "04",
-            maio: "05",
-            junho: "06",
-            julho: "07",
-            agosto: "08",
-            setembro: "09",
-            outubro: "10",
-            novembro: "11",
-            dezembro: "12",
-          };
-          return months[month.toLowerCase()];
-        }
-        console.log(getMonthNumber("marco") + " é o mês de março");
-        console.log(getMonthNumber("setembro") + " é o mês de setembro");
-        console.log(getMonthNumber("dezembro") + " é o mês de dezembro");
-
-        /*
-                  Agora, declare uma variável chamada `regexDate` que irá receber a expressão
-                  regular que irá fazer o match com as datas. Crie grupos de captura para o
-                  dia, o mês e o ano. Para os meses, você pode fazer o match somente com os
-                  meses que estão no texto, não precisa adicionar todos.
-                  Com o que vimos até agora, você consegue fazer :D
-                  Mostre a regex no console.
-                  */
-        console.log("\nRegex que vai fazer o match com as datas do texto:");
-        // ?
-
-        text =
-          "Antonio Rafael, Conde de Formosa (Brasilia, 24/04/1985 – Formosa, 16/12/2089), apelidado de 'O Centauro de Luvas', foi um militar, político, abolicionista e monarquista brasiliense.";
-        let regexDate = /(\d{2})\/(\d{2})\/(\d{4})/g;
-        console.log(regexDate);
-        console.log("\nCapturando as datas:");
-        let matches = text.match(regexDate);
-        console.log("Datas encontradas:", matches);
-        /*
-                  Agora crie a função que irá fazer o replace dos dados. A função será chamada
-                  de `replaceDate`. Ela deve retornar a data no formato:
-                  "[DIA]/[MÊS]/[ANO]"
-                  Após criar a função, faça o replace das datas no texto, mostrando no
-                  console o resultado.
-                  */
-        console.log("\nReplace de datas:");
-
-        let replaceDate = (match, day, month, year) => {
-          return `${day}/${month}/${year}`;
-        };
-        text = text.replace(regexDate, replaceDate);
-        console.log(text);
-
-        // ?
+        reseta.addEventListener("click", () => {
+          cronus.value = 0;
+        });
       })();
     </script>
   </body>
