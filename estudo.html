@@ -6,355 +6,117 @@
     <title>Estudo JS Ninja</title>
   </head>
   <body>
-    <h1>Cronômetro</h1>
-    <button id="inicia">Start</button>
-    <button id="para">Stop</button>
-    <button id="reseta">Reset</button>
-    <input type="text" name="" id="cronus" value="0" />
 
-    <style>
+
    
-   /* Botões com efeito ninja premium - 3D, gradientes, sombras */
-      button {
-        margin: 10px;
-        padding: 12px 28px;
-        
-        /* Bordas e cantos */
-        border: 2px solid rgba(255, 255, 255, 0.2);
-        border-radius: 10px;
-        
-        /* Tipografia */
-        color: #fff;
-        font-size: 16px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        
-        /* Interatividade */
-        cursor: pointer;
-        user-select: none;
-        
-        /* Transformação 3D */
-        transform: perspective(800px) translateZ(0);
-        transform-style: preserve-3d;
-        
-        /* Transição suave */
-        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        
-        /* Sombras 3D em camadas */
-        box-shadow: 
-          0 4px 8px rgba(0, 0, 0, 0.2),
-          0 6px 12px rgba(0, 0, 0, 0.15),
-          0 8px 16px rgba(0, 0, 0, 0.1),
-          inset 0 -2px 6px rgba(0, 0, 0, 0.3),
-          inset 0 2px 6px rgba(255, 255, 255, 0.2);
-        
-        /* Sombra de texto */
-        text-shadow: 
-          1px 1px 2px rgba(0, 0, 0, 0.4),
-          2px 2px 4px rgba(0, 0, 0, 0.2);
-      }
-      
-      /* Botão Start - Verde vibrante */
-      #inicia {
-        background: linear-gradient(135deg, #11998e, #38ef7d);
-        background-size: 200% 200%;
-        animation: gradientPulse 4s ease infinite;
-      }
-      
-      /* Botão Stop - Vermelho vibrante */
-      #para {
-        background: linear-gradient(135deg, #eb3349, #f45c43);
-        background-size: 200% 200%;
-        animation: gradientPulse 4s ease infinite;
-      }
-      
-      /* Botão Reset - Azul vibrante */
-      #reseta {
-        background: linear-gradient(135deg, #4facfe, #00f2fe);
-        background-size: 200% 200%;
-        animation: gradientPulse 4s ease infinite;
-      }
-      
-      @keyframes gradientPulse {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-      }
-      
-      button:hover {
-        /* Elevação 3D */
-        transform: perspective(800px) translateY(-6px) translateZ(10px) scale(1.05);
-        
-        /* Sombras intensificadas */
-        box-shadow: 
-          0 8px 16px rgba(0, 0, 0, 0.3),
-          0 12px 24px rgba(0, 0, 0, 0.2),
-          0 16px 32px rgba(0, 0, 0, 0.15),
-          inset 0 -3px 8px rgba(0, 0, 0, 0.4),
-          inset 0 3px 8px rgba(255, 255, 255, 0.3);
-        
-        /* Borda brilhante */
-        border-color: rgba(255, 255, 255, 0.5);
-        
-        /* Brilho no texto */
-        text-shadow: 
-          1px 1px 3px rgba(0, 0, 0, 0.5),
-          2px 2px 6px rgba(0, 0, 0, 0.3),
-          0 0 15px rgba(255, 255, 255, 0.4);
-      }
-      
-      button:active {
-        /* Efeito de pressionar */
-        transform: perspective(800px) translateY(2px) translateZ(0) scale(0.97);
-        
-        /* Sombras reduzidas */
-        box-shadow: 
-          0 2px 4px rgba(0, 0, 0, 0.3),
-          0 3px 6px rgba(0, 0, 0, 0.2),
-          inset 0 3px 8px rgba(0, 0, 0, 0.5),
-          inset 0 -1px 4px rgba(255, 255, 255, 0.1);
-        
-        /* Transição instantânea */
-        transition: all 0.1s ease;
-      }
-
-      /* Input com efeito ninja premium - Display de cristal */
-      input {
-        margin: 10px;
-        padding: 12px 28px;
-        
-        /* Gradiente roxo futurista */
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        background-size: 200% 200%;
-        
-        /* Bordas com efeito glassmorphism */
-        border: 2px solid rgba(255, 255, 255, 0.25);
-        border-radius: 10px;
-        
-        /* Tipografia */
-        color: #fff;
-        font-size: 20px;
-        font-weight: 800;
-        text-align: center;
-        letter-spacing: 2px;
-        
-        /* Cursor e interação */
-        cursor: default;
-        user-select: none;
-        
-        /* Transformação 3D */
-        transform: perspective(800px) translateZ(0);
-        transform-style: preserve-3d;
-        
-        /* Transição suave */
-        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-        
-        /* Múltiplas camadas de sombra 3D */
-        box-shadow: 
-          0 4px 8px rgba(102, 126, 234, 0.3),
-          0 6px 12px rgba(118, 75, 162, 0.25),
-          0 8px 16px rgba(0, 0, 0, 0.2),
-          inset 0 -2px 8px rgba(0, 0, 0, 0.3),
-          inset 0 2px 8px rgba(255, 255, 255, 0.2);
-        
-        /* Sombra de texto com brilho */
-        text-shadow: 
-          0 0 10px rgba(255, 255, 255, 0.3),
-          2px 2px 4px rgba(0, 0, 0, 0.5),
-          0 0 20px rgba(102, 126, 234, 0.4);
-        
-        /* Animação de gradiente */
-        animation: gradientPulse 6s ease infinite;
-      }
-      
-      input:hover {
-        /* Elevação e escala */
-        transform: perspective(800px) translateY(-4px) translateZ(8px) scale(1.03);
-        
-        /* Sombras intensificadas com brilho colorido */
-        box-shadow: 
-          0 8px 16px rgba(102, 126, 234, 0.4),
-          0 12px 24px rgba(118, 75, 162, 0.3),
-          0 16px 32px rgba(0, 0, 0, 0.25),
-          inset 0 -3px 10px rgba(0, 0, 0, 0.4),
-          inset 0 3px 10px rgba(255, 255, 255, 0.3),
-          0 0 30px rgba(102, 126, 234, 0.5);
-        
-        /* Borda mais brilhante */
-        border-color: rgba(255, 255, 255, 0.5);
-        
-        /* Texto com mais brilho */
-        text-shadow: 
-          0 0 15px rgba(255, 255, 255, 0.5),
-          2px 2px 6px rgba(0, 0, 0, 0.6),
-          0 0 30px rgba(102, 126, 234, 0.6),
-          0 0 40px rgba(118, 75, 162, 0.4);
-      }
-      
-      input:focus {
-        /* Foco com efeito de destaque */
-        outline: none;
-        border-color: rgba(255, 255, 255, 0.6);
-        
-        box-shadow: 
-          0 8px 16px rgba(102, 126, 234, 0.5),
-          0 12px 24px rgba(118, 75, 162, 0.4),
-          0 0 0 4px rgba(102, 126, 234, 0.3),
-          inset 0 -3px 10px rgba(0, 0, 0, 0.4),
-          inset 0 3px 10px rgba(255, 255, 255, 0.3);
-      }
-
-      /* h1 com efeito ninja avançado - 3D, sombreamento, hover e active */
-      h1 {
-        /* Tamanho calculado: 3 botões + 1 input = 4 elementos com padding 10px 20px + margens 10px */
-        /* Cada elemento: (20px padding left + 20px right) + (10px margin left + 10px right) ≈ 50px base */
-        width: calc(100% - 20px); /* largura total menos margens */
-        max-width: 800px; /* largura máxima para telas grandes */
-        margin: 20px auto;
-        padding: 20px 30px;
-        
-        /* Efeito 3D e gradiente vibrante */
-        background: linear-gradient(145deg, #ff6b6b, #4ecdc4, #45b7d1, #f7b731);
-        background-size: 300% 300%;
-        
-        /* Bordas com efeito futurista */
-        border: 3px solid rgba(255, 255, 255, 0.3);
-        border-radius: 15px;
-        
-        /* Texto estilizado */
-        color: #fff;
-        font-size: 32px;
-        font-weight: 900;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        text-align: center;
-        
-        /* Sombreamento múltiplo 3D */
-        box-shadow: 
-          0 8px 16px rgba(0, 0, 0, 0.3),
-          0 12px 24px rgba(0, 0, 0, 0.2),
-          0 16px 32px rgba(0, 0, 0, 0.15),
-          inset 0 -3px 10px rgba(0, 0, 0, 0.3),
-          inset 0 3px 10px rgba(255, 255, 255, 0.2);
-        
-        /* Sombreamento de texto 3D */
-        text-shadow: 
-          2px 2px 4px rgba(0, 0, 0, 0.5),
-          4px 4px 8px rgba(0, 0, 0, 0.3),
-          -1px -1px 2px rgba(255, 255, 255, 0.3),
-          0 0 20px rgba(255, 107, 107, 0.5);
-        
-        /* Transformação 3D */
-        transform: perspective(1000px) rotateX(2deg);
-        transform-style: preserve-3d;
-        
-        /* Transições suaves */
-        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        
-        /* Cursor interativo */
-        cursor: pointer;
-        user-select: none;
-        
-        /* Animação de gradiente */
-        animation: gradientShift 8s ease infinite;
-      }
-      
-      @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-      
-      h1:hover {
-        /* Transformação 3D no hover */
-        transform: perspective(1000px) rotateX(-3deg) translateY(-8px) scale(1.03);
-        
-        /* Sombreamento intensificado */
-        box-shadow: 
-          0 12px 24px rgba(0, 0, 0, 0.4),
-          0 18px 36px rgba(0, 0, 0, 0.3),
-          0 24px 48px rgba(0, 0, 0, 0.2),
-          inset 0 -4px 12px rgba(0, 0, 0, 0.4),
-          inset 0 4px 12px rgba(255, 255, 255, 0.3),
-          0 0 40px rgba(255, 107, 107, 0.6);
-        
-        /* Brilho no texto */
-        text-shadow: 
-          2px 2px 6px rgba(0, 0, 0, 0.6),
-          4px 4px 12px rgba(0, 0, 0, 0.4),
-          -1px -1px 3px rgba(255, 255, 255, 0.4),
-          0 0 30px rgba(255, 107, 107, 0.8),
-          0 0 50px rgba(78, 205, 196, 0.5);
-        
-        /* Borda brilhante */
-        border-color: rgba(255, 255, 255, 0.6);
-        
-        /* Acelera animação do gradiente */
-        animation: gradientShift 3s ease infinite;
-      }
-      
-      h1:active {
-        /* Efeito de pressionar para dentro */
-        transform: perspective(1000px) rotateX(0deg) translateY(4px) scale(0.98);
-        
-        /* Sombra reduzida para efeito de pressionar */
-        box-shadow: 
-          0 4px 8px rgba(0, 0, 0, 0.3),
-          0 6px 12px rgba(0, 0, 0, 0.2),
-          inset 0 4px 12px rgba(0, 0, 0, 0.5),
-          inset 0 -2px 8px rgba(255, 255, 255, 0.1);
-        
-        /* Texto com sombra reduzida */
-        text-shadow: 
-          1px 1px 2px rgba(0, 0, 0, 0.7),
-          2px 2px 4px rgba(0, 0, 0, 0.5),
-          0 0 15px rgba(255, 107, 107, 0.4);
-        
-        /* Transição rápida no click */
-        transition: all 0.1s ease;
-      }
-      
-      body {
-        background-color: #f0f0f0;
-        color: #333;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 16px;
-        line-height: 1.5;
-        text-align: center;
-        text-decoration: none;
-        text-transform: uppercase;
-        transition: all 0.3s ease;
-
-
-      }
-
-    </style>
     <script>
       (function () {
-        // Ao clicar em Start, o valor do campo deve ser incrementado de 1 em 1, acada segundo;
-        // Ao clicar em Stop, o cronômetro deve parar de contar;
-        //Ao clicar em Reset, o cronômetro deve zerar e parar de contar.
+       
+ /*
+  Crie dois objetos, que serão duas pessoas. Cada um deve ter as propriedades
+  `name` e `lastName`, preenchidos com o nome e sobrenome da pessoa.
+  */
+  // 
 
-        const inicia = document.getElementById("inicia");
-        const para = document.getElementById("para");
-        const reseta = document.getElementById("reseta");
-        const cronus = document.getElementById("cronus");
+let pessoa1 = {
+    name: 'Antonio Rafael',
+    lastName: 'Souza Cruz de Noronha'
+}
+let pessoa2 = {
+    name: 'Maria Erica',
+    lastName: 'Silva'
+}
 
-        let interval;
 
-        inicia.addEventListener("click", () => {
-          interval = setInterval(() => {
-            cronus.value = parseInt(cronus.value) + 1;
-          }, 1000);
-        });
+  /*
+  Agora crie uma função chamada `getFullName` que retorne as propriedades
+  `name` e `lastName` dos objetos acima, formando um nome completo.
+  A função não deve receber nenhum parâmetro, mas as propriedades `name` e
+  `lastName` devem ser dinâmicas.
+  A mesma função deve servir para as duas pessoas (ou qualquer outra que for
+  criada).
+  Depois disso, invoque essa função, mostrando no console o nome completo das
+  pessoas que foram criadas anteriormente, passando as pessoas acima como
+  contexto da função. Use um console.log por pessoa.
+  */
+  console.log( 'O nome das pessoas é:' );
+  // ?
+function getFullName() {
+    return this.name + ' ' + this.lastName;
+}
+console.log(getFullName.call(pessoa1));
+console.log(getFullName.call(pessoa2));
 
-        para.addEventListener("click", () => {
-          clearInterval(interval);
-        });
+  /*
+  Crie uma função chamada `sum`. Essa função pode receber uma lista de
+  parâmetros variável, e deverá retornar a soma de todos eles.
+  Não use estruturas de repetição para somar os argumentos.
+  Na primeira linha, dentro da função, deixe um console.log para mostrar todos
+  os parâmetros passados para essa função.
+  */
+  // ?
+function sum() {
+    console.log(arguments);
+    return Array.from(arguments).reduce(function (acumulado, valor) {
+        return Number(acumulado) + Number(valor);
+    }, 0);
+}
 
-        reseta.addEventListener("click", () => {
-          cronus.value = 0;
-        });
+
+  /*
+  Mostre no console que a função acima funciona, invocando-a em 3 console.log
+  diferentes, com quantidades variáveis de parâmetros passados.
+  */
+  console.log( '\nSomar alguns números:' );
+  // ?
+console.log(sum(1, 2, 3));
+console.log(sum(1, 2, 3, 4));
+console.log(sum(1, 2, 3, 4, 5));  
+
+  /*
+  Declare uma variável chamada `userEntry`, que irá receber alguns valores
+  entrados pelo usuário. Mostre para o usuário a seguinte frase:
+  "Entre com alguns números que serão somados:"
+  */
+  // ?
+let userEntry = prompt("Entre com alguns números que serão somados:");
+
+  /*
+  Mostre no console o valor entrado pelo usuário:
+  */
+  console.log( '\nEntrada do usuário:' );
+  // ?
+console.log(userEntry); 
+
+  /*
+  Crie uma função chamada `justNumbers`, que recebe por parâmetro uma string
+  e remove tudo o que não for número, retornando um array somente com os números
+  da string. Mostre a representação em string dessa função no console.
+  */
+  console.log( '\nFunção que limpa entrada do usuário (somente números):' );
+  // ?
+function justNumbers(str) {
+    return str.match(/\d+/g) || [];
+}
+console.log(justNumbers.toString());
+
+  /*
+  Usando a função acima, faça a limpeza dos valores entrados pelo usuário,
+  atribuindo o resultado à uma variável `numbers`.
+  */
+let numbers = justNumbers(userEntry);
+
+  console.log( '\nEntrada do usuário limpa. Somente números:' );
+  // ?
+console.log(numbers);   
+
+  /*
+  Agora com o array de números, utilize a função `sum` para somar todos os
+  números desse array e mostre o resultado no console.
+  */
+  console.log( '\nSomar números entrados pelo usuário:' );
+  // ?  
+console.log(sum(...numbers));     
       })();
     </script>
   </body>
